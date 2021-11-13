@@ -111,10 +111,3 @@ class Parser:
     def Number(self):
         token = self.consume(NUMBER)
         return ValueNode("NUMBER", token.value)
-
-#to_parse = "function(1213,2, \"sdfasd\", dsfs_sdf) let a = 3 abc_sdf()"
-#t = Tokenizer(to_parse)
-#p = Parser()
-#print(p.parse(t))
-
-
