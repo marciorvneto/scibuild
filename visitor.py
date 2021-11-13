@@ -13,11 +13,11 @@ class NodeVisitor():
             self.interpreter.new_frame()
             experiment.accept(self)
             self.interpreter.pop_frame()
-            
+
     def visitExperimentNode(self, node):
         for statement in node.statements:
-            statement.accept(self) 
-            
+            statement.accept(self)
+
     def visitFunctionCallNode(self, node):
         fn_name = node.name.value
         arg_values = [node.accept(self) for node in node.args]
@@ -34,6 +34,6 @@ class NodeVisitor():
         var_id = node.variable
         var_value = node.value.value
         self.interpreter.define_variable(var_id, var_value)
-       
+
     def visitValueNode(self, node):
-       pass 
+       pass

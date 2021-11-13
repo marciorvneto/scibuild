@@ -47,7 +47,7 @@ TOKEN_DEFINITIONS = [
     [PAPER_KW, "^paper"],
     [EXPERIMENT_KW, "^experiment"],
     [LET_KW, "^let"],
-    
+
     [LEFT_PAR, "^\("],
     [RIGHT_PAR, "^\)"],
     [LEFT_CB, "^\{"],
@@ -76,7 +76,7 @@ class Tokenizer:
     def get_next_token(self):
         while True:
             if self.cursor >= len(self.text):
-                return Token(EOF, "") 
+                return Token(EOF, "")
             matched = self.match()
             if matched:
                 return matched
@@ -94,10 +94,10 @@ class Tokenizer:
             match = re.search(regex, substr)
             if not match:
                 continue
-            content = match.group(0) 
+            content = match.group(0)
             self.cursor += len(content)
             if token_type == WHITESPACE:
-                return None 
+                return None
             return Token(token_type, content)
         raise Exception(f"Could not match token at position {self.cursor}: \"{self.text[self.cursor]}\"")
 
