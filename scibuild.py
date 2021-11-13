@@ -5,6 +5,7 @@ import sys
 from tokenizer import *
 from parser import *
 from interpreter import *
+from logger import scibuild_logger 
 
 args = sys.argv[1:]
 
@@ -23,10 +24,10 @@ try:
         try:
             i.interpret(ast)
         except Exception as e:
-            print("Interpretation error")
-            print(e)
-except:
-    print(f"File \"{file_path}\" not found.")
-    quit()
+            scibuild_logger.error(f"Error reading file: {e}") 
+            quit(1)
+except Exception as e:
+    scibuild_logger.error(f"File \"{file_path}\" not found.")
+    quit(1)
 
 

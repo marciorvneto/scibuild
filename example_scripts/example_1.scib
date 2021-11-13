@@ -6,7 +6,7 @@ paper "Monte Carlo Method for Estimating Pi" {
         // Defining parameters
         
         let side = 1.0
-        let num_trials = 100
+        let num_trials = 10000
 
         // Running steps
 

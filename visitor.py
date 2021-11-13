@@ -1,3 +1,5 @@
+from logger import Logger
+
 class NodeVisitor():
     def __init__(self, interpreter):
         self.interpreter = interpreter
@@ -9,12 +11,16 @@ class NodeVisitor():
             self.interpreter.pop_frame()
 
     def visitPaperNode(self, node):
+        logger = Logger("Paper")
+        logger.success(f"Running paper \"{node.title.value}\" ...")
         for experiment in node.experiments:
             self.interpreter.new_frame()
             experiment.accept(self)
             self.interpreter.pop_frame()
 
     def visitExperimentNode(self, node):
+        logger = Logger("Experiment")
+        logger.success(f"Running experiment \"{node.title.value}\" ...")
         for statement in node.statements:
             statement.accept(self)
 
