@@ -12,8 +12,6 @@ paper "Monte Carlo Method for Estimating Pi" {
 
         cmd("./example_scripts/my-script.py", side, num_trials)
         
-        let other_variable = -12.2
-
     }
 
 }
