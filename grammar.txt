@@ -1,0 +1,33 @@
+Value ::= Number | String
+
+Arg ::= ID | Value
+
+File ::= ListOfPapers
+
+ListOfPapers ::= Paper | Paper ListOfPapers
+
+Paper ::= ListOfDefinitions ListOfExperiments | ListOfExperiments
+
+ListOfDefinitions ::= Definition | Definition ListOfDefinitions
+
+Definition ::= let ID = Value
+
+ListOfExperiments ::= Experiment | ListOfExperiments
+
+Experiment ::= ListOfStatements 
+
+Experiment ::= ID(
+
+ListOfStatements ::= Statement | ListOfStatements
+
+Statement ::= Definition | FunctionCall
+
+ListOfFunctions ::= Function | ListOfFunctions
+
+FunctionCall ::= ID( MultiArgumentFunctionCallSuffix| NoArgumentFunctionCallSuffixl
+
+MultiArgumentFunctionCallSuffix ::= CommaSeparatedArgs) 
+
+NoArgumentFunctionCallSuffix ::= ) 
+
+CommaSeparatedArgs ::= ID | ID, CommaSeparatedArgs

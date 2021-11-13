@@ -1,0 +1,20 @@
+paper "Monte Carlo Method for Estimating Pi" {
+
+    experiment "Running MC for a fixed set of parameters" 
+{
+
+        // Defining parameters
+        
+        let side = 1.0
+        let num_trials = 100
+
+        // Running steps
+
+        //print("./mc.py", 1, side)
+        cmd("ls")
+        
+        let other_variable = -12.2
+
+    }
+
+}
