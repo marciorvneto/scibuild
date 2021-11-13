@@ -7,15 +7,15 @@ class Parser:
     def parse(self, tokenizer: Tokenizer):
         self.tokenizer = tokenizer
         self.lookahead = tokenizer.get_next_token()
-        return self.Start() 
-    
+        return self.Start()
+
     def consume(self, token_type: int):
         if self.lookahead.type != token_type:
             raise Exception(f"Expected token of type {token_type}, got {self.lookahead.type}")
         old_lookahead = self.lookahead
         self.lookahead = self.tokenizer.get_next_token()
         return old_lookahead
-    
+
 
     def Start(self):
         return StartNode(self.ListOfPapers())
@@ -25,7 +25,7 @@ class Parser:
         while not self.lookahead.type == EOF and self.lookahead.type == PAPER_KW:
             papers.append(self.Paper())
         return papers;
-    
+
     def Paper(self):
         self.consume(PAPER_KW)
         title = self.String()
@@ -48,7 +48,7 @@ class Parser:
             statements = self.ListOfStatements()
         self.consume(RIGHT_CB)
         return ExperimentNode(title, statements)
-    
+
     def ListOfDefinitions(self):
         definitions = [self.Definition()]
         while not self.lookahead.type == EOF and self.lookahead.type == LET_KW:
@@ -83,14 +83,14 @@ class Parser:
             return FunctionCallNode(name, [])
         args = self.CommaSeparatedArgs()
         self.consume(RIGHT_PAR)
-        return FunctionCallNode(name, args) 
+        return FunctionCallNode(name, args)
 
     def CommaSeparatedArgs(self):
         args = [self.Arg()]
         while not self.lookahead.type == EOF and self.lookahead.type == COMMA:
             self.consume(COMMA)
             args.append(self.Arg())
-        return args 
+        return args
 
     def Arg(self):
         if self.lookahead.type == ID:
@@ -111,3 +111,4 @@ class Parser:
     def Number(self):
         token = self.consume(NUMBER)
         return ValueNode("NUMBER", token.value)
+

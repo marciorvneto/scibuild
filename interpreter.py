@@ -46,7 +46,7 @@ class Interpreter:
                 if var_id == frame[i][0]:
                     return frame[i][1]
         raise Exception(f"Undefined variable {var_id}.")
-            
+
     def runStandardFn(self, fn_name, args):
         if not fn_name in COMMANDS.keys():
             raise Exception(f"Unknown function {fn_name}.")

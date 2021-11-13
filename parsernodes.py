@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Union
 from dataclasses import dataclass
 from visitor import NodeVisitor
+from typing import List
 
 class Node:
     def accept(self, visitor: NodeVisitor):
@@ -17,7 +18,7 @@ class ValueNode(Node):
 @dataclass
 class DefinitionNode(Node):
     variable: str
-    value: ValueNode 
+    value: ValueNode
     def accept(self, visitor: NodeVisitor):
         return visitor.visitDefinitionNode(self)
 
@@ -31,26 +32,26 @@ class ArgNode:
 @dataclass
 class FunctionCallNode(Node):
     name: str
-    args: list[ArgNode]
+    args: List[ArgNode]
     def accept(self, visitor: NodeVisitor):
         return visitor.visitFunctionCallNode(self)
 
 @dataclass
 class ExperimentNode(Node):
     title: str
-    statements: list[Union[DefinitionNode, FunctionCallNode]]
+    statements: List[Union[DefinitionNode, FunctionCallNode]]
     def accept(self, visitor: NodeVisitor):
         return visitor.visitExperimentNode(self)
 
 @dataclass
 class PaperNode(Node):
-    title: str 
-    experiments: list[ExperimentNode] 
+    title: str
+    experiments: List[ExperimentNode]
     def accept(self, visitor: NodeVisitor):
         return visitor.visitPaperNode(self)
 
 @dataclass
 class StartNode(Node):
-    papers: list[PaperNode]
+    papers: List[PaperNode]
     def accept(self, visitor: NodeVisitor):
         return visitor.visitStartNode(self)
